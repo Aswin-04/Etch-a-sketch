@@ -1,61 +1,49 @@
- let slider = document.body.querySelector(".slider");
- let span = slider.nextElementSibling;
- let mousedown = false;
+const container = document.body.querySelector(".container");
+const slider = document.body.querySelector(".slider");
+const span = slider.nextElementSibling;
 
- slider.addEventListener("mousedown", () =>{
-    mousedown = true;
- })
+let isDrawing = false;
 
- slider.addEventListener("mouseup", () => {
-    mousedown = false;
- })
+slider.addEventListener("input", () => {
+    const gridSize = slider.value;
+    span.textContent = `${gridSize} x ${gridSize}`;
+    createGrid(gridSize);
+});
 
- slider.addEventListener("mousemove", () => {
-    if (mousedown) {
+document.body.addEventListener("mousedown", () => isDrawing = true);
+document.body.addEventListener("mouseup", () => isDrawing = false);
 
-        let spanValue = slider.value;
-        span.textContent = `${spanValue} x ${spanValue}`;
-        createGrid(slider.value);
-    }
- });
-
-
-function createGrid (gridSize) {
-
-    let container = document.body.querySelector(".container");
+function createGrid(gridSize) {
     container.innerHTML = "";
-    
-    for (let i=1; i <= gridSize; i++) {
-        eachRow = document.createElement("div");
-        addAttributeToEachRow(eachRow, gridSize); 
-        container.append(eachRow);
-    
+
+    for (let i = 1; i <= gridSize; i++) {
+        const row = document.createElement("div");
+        row.style.cssText = `max-height : ${640/gridSize}px;
+                             display : flex;`
+        
         for (let j=1; j <= gridSize; j++) {
-            let eachBox = document.createElement("div");
-            addAttributeToEachBox(eachBox, gridSize);
-            eachRow.append(eachBox);
+            const box = document.createElement("div");
+            box.style.cssText = `height : ${640/gridSize}px; 
+                                 width : ${640/gridSize}px;
+                                 box-sizing : border-box;
+                                 border : 1px solid black; `;
+
+            box.classList = "eachBox";
+            
+            box.addEventListener("mouseover", changeColor);
+            box.addEventListener("mousedown", changeColor);
+            row.append(box);
         }
+
+        container.append(row);
+
     }
 }
 
-function addAttributeToEachRow(eachRow, gridSize) {
-
-    eachRow.setAttribute(
-        "style",`
-        max-height : ${640/gridSize}px;
-        display : flex;
-        `);
-}
-
-function addAttributeToEachBox(eachBox, gridSize) {
-    eachBox.setAttribute(
-        "style", `
-        height : ${640/gridSize}px;
-        width : ${640/gridSize}px;
-        box-sizing : border-box;
-        border : 1px solid black;
-        `);
-    eachBox.className = "eachBox";
+function changeColor(e) {
+    if (isDrawing && e.buttons === 1) {
+        e.target.style.backgroundColor = "black";
+    } 
 }
 
 createGrid(slider.value); 
