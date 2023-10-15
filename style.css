@@ -10,9 +10,11 @@ body {
     background: #edf1f4;
 }
 .container {
-    min-width: 650px;
-    min-height: 650px;
+    min-width: 640px;
+    min-height: 640px;
     border: 5px solid black;
+    padding: 0;
+    margin: 0;
 }
 
 .slider-box {
