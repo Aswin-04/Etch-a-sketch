@@ -3,6 +3,8 @@ const slider = document.body.querySelector(".slider");
 const span = slider.nextElementSibling;
 
 let isDrawing = false;
+let defaultColor = "black";
+let color = defaultColor;
 
 slider.addEventListener("input", () => {
     const gridSize = slider.value;
@@ -30,8 +32,8 @@ function createGrid(gridSize) {
 
             box.classList = "eachBox";
             
-            box.addEventListener("mouseover", changeColor);
-            box.addEventListener("mousedown", changeColor);
+            box.addEventListener("mouseover", (event) => changeColor(event, color));
+            box.addEventListener("mousedown", (event) => changeColor(event, color));
             row.append(box);
         }
 
@@ -40,9 +42,9 @@ function createGrid(gridSize) {
     }
 }
 
-function changeColor(e) {
-    if (isDrawing && e.buttons === 1) {
-        e.target.style.backgroundColor = "black";
+function changeColor(event, color) {
+    if (isDrawing && event.buttons === 1) {
+        event.target.style.backgroundColor = color;
     } 
 }
 
@@ -50,3 +52,14 @@ createGrid(slider.value);
 
 const clearButton = document.querySelector(".clear");
 clearButton.addEventListener("click", () => createGrid(slider.value));
+
+const eraseButton = document.querySelector(".eraser");
+eraseButton.addEventListener("click", () => {
+    color = "#edf1f4";
+});
+
+const blackSketch = document.querySelector(".black-sketch");
+blackSketch.addEventListener("click", () => {
+    color = defaultColor;
+})
+
