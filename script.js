@@ -47,3 +47,6 @@ function changeColor(e) {
 }
 
 createGrid(slider.value); 
+
+const clearButton = document.querySelector(".clear");
+clearButton.addEventListener("click", () => createGrid(slider.value));
