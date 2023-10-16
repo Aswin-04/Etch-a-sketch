@@ -53,8 +53,7 @@ function createGrid(gridSize) {
             row.append(box);
         }
         
-        container.append(row);
-        
+        container.append(row);  
     }
 }
 
@@ -96,6 +95,7 @@ function setCurrentMode(newMode) {
 }
 
 function deactivateAllButtons() {
+    
     rainbowBtn.classList.remove("active");
     eraseBtn.classList.remove("active");
     blackSketchBtn.classList.remove("active");
