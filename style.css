@@ -101,3 +101,12 @@ button {
 .right-container {
     margin-right: 500px;
 }
+
+.active {
+    background: #333;
+    color: #edf1f4;
+}
+
+button:hover {
+    transform : scale(1.1);
+}
