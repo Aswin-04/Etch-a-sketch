@@ -27,16 +27,16 @@ slider.addEventListener("input", () => {
 document.body.addEventListener("mousedown", () => isDrawing = true);
 document.body.addEventListener("mouseup", () => isDrawing = false);
 
-createEventListener(eraseBtn, "eraser");
-createEventListener(blackSketchBtn, DEFAULT_MODE);
-createEventListener(rainbowBtn,"rainbow")
+createEventListeners(eraseBtn, "eraser");
+createEventListeners(blackSketchBtn, DEFAULT_MODE);
+createEventListeners(rainbowBtn,"rainbow")
 
 function createGrid(gridSize) {
     container.innerHTML = "";
     
     for (let i = 1; i <= gridSize; i++) {
         const row = document.createElement("div");
-        row.style.cssText = `max-height : ${640/gridSize}px;
+        row.style.cssText = `min-height : ${640/gridSize}px;
         display : flex;`
         
         for (let j=1; j <= gridSize; j++) {
@@ -48,8 +48,8 @@ function createGrid(gridSize) {
             
             box.classList = "eachBox";
             
-            box.addEventListener("mouseover", (event) => changeColor(event, color));
-            box.addEventListener("mousedown", (event) => changeColor(event, color));
+            box.addEventListener("mouseover", (event) => changeColor(event, currentColor));
+            box.addEventListener("mousedown", (event) => changeColor(event, currentColor));
             row.append(box);
         }
         
@@ -68,45 +68,41 @@ function changeColor(event, color) {
             color = "#edf1f4";
             
         } else if (currentMode === "rainbow") {
-            
-            const randomR = Math.floor(Math.random() * 256);
-            const randomG = Math.floor(Math.random() * 256);
-            const randomB = Math.floor(Math.random() * 256);
-            
-            color = `rgb(${randomR}, ${randomG}, ${randomB})`;
+            color = getRandomColor()
         }
         event.target.style.backgroundColor = color;
     } 
 }
 
-function createEventListener(element, mode) {
-    if (mode === "clear") {
-        element.addEventListener("click", () => {
-            createGrid(currentGridSize);
-        });
-        
-    } else {
-        element.addEventListener("click", () => {
-            setCurrentMode(mode)           
-        })
-    }
+function getRandomColor() {
+    return `rgb(${getRandomValue()}, ${getRandomValue()}, ${getRandomValue()})`;
 }
 
-function setCurrentMode(newMode) {   
-    activateButton(newMode);
+function getRandomValue() {
+    return Math.floor(Math.random() * 256);
+}
+
+function createEventListeners(element, mode) {
+    element.addEventListener("click", () => {
+        setCurrentMode(mode)           
+    });    
+}
+
+function setCurrentMode(newMode) {  
+
+    deactivateAllButtons();
     currentMode = newMode;    
+    activateButton(newMode);
+}
+
+function deactivateAllButtons() {
+    rainbowBtn.classList.remove("active");
+    eraseBtn.classList.remove("active");
+    blackSketchBtn.classList.remove("active");
 }
 
 function activateButton(newMode) {
-    
-    if (currentMode === "rainbow") {
-        rainbowBtn.classList.remove("active")
-    } else if (currentMode === "eraser") {
-        eraseBtn.classList.remove("active")
-    } else {
-        blackSketchBtn.classList.remove("active")
-    }
-    
+
     if (newMode === "rainbow") {
         rainbowBtn.classList.add("active")
     } else if (newMode === "eraser") {
@@ -116,7 +112,9 @@ function activateButton(newMode) {
     }   
 }
 
+function clearGrid() {
+    createGrid(currentGridSize);
+}
 
 
-
-createEventListener(clearBtn, "clear")
+clearBtn.addEventListener("click", clearGrid)

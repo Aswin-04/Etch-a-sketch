@@ -1,8 +1,11 @@
+
 body {
     padding: 0;
     margin: 0;
     height: 100vh;
     background: #edf1f4;
+    display: flex;
+    flex-direction: column;
 }
 
 .container {
@@ -111,6 +114,25 @@ button:hover {
     transform : scale(1.1);
 }
 
-/* .row {
+.footer {
+    margin-top: 86px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 50px;
+    gap: 0.5em;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.05), #edf1f4);
+    box-shadow: inset 15px 15px 20px rgba(0, 0, 0, 0.1), inset -15px -15px 20px rgba(0, 0, 0, 0.1);
+    font-size: 1.5em;
+}
 
-} */
+img {
+    width: 30px;
+    height: 30px;
+}
+
+a {
+    text-decoration:  none;
+    color: inherit;
+}
