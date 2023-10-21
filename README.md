@@ -1,7 +1,7 @@
 
 # Etch-a-Sketch
 
-![Etch-a-Sketch Demo](screenshot.png)
+![Etch-a-Sketch Demo](images/screenshot.png)
 
 This project is part of The Odin Project's Foundation Course, designed to enhance your skills in working with the Document Object Model (DOM) using JavaScript.
 
