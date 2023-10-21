@@ -33,3 +33,7 @@ To work on this project locally or further customize it, follow these steps:
    ```bash
    git clone https://github.com/Aswin-04/Etch-a-sketch.git
 
+## Acknowledgments
+- This project was created as part of The Odin Project's Foundation Course.
+- Special thanks to the open-source community for providing resources and      inspiration.
+
