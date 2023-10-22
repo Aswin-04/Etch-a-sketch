@@ -7,7 +7,7 @@ This project is part of The Odin Project's Foundation Course, designed to enhanc
 
 ## Project Overview
 
-Etch-a-Sketch is a simple web-based drawing application that allows users to draw on a canvas by hovering their mouse over it. The user can choose the size of the canvas and clear it to start over. This project aims to reinforce your understanding of DOM manipulation and event handling in JavaScript.
+Etch-a-Sketch is a simple web-based drawing application that allows users to draw on a canvas by hovering their mouse over it. The user can choose the size of the canvas and clear it to start over. This project aims to reinforce my understanding of DOM manipulation and event handling in JavaScript.
 
 ## Features
 
